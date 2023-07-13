@@ -8,6 +8,7 @@ import (
 	lambda "github.com/aws/aws-lambda-go/lambda"
 
 	"github.com/marcoswlrich/twittergo/awsgo"
+	"github.com/marcoswlrich/twittergo/secretmanager"
 )
 
 func main() {
@@ -26,6 +27,18 @@ func ExecuteLambda(
 		res = &events.APIGatewayProxyResponse{
 			StatusCode: 400,
 			Body:       "Error variaveis de retorno, deve incluir 'SecretName', 'BucketName', 'UrlPrefix'",
+			Headers: map[string]string{
+				"Contert-Type": "application/json",
+			},
+		}
+		return res, nil
+	}
+
+	SecretModel, err := secretmanager.GetSecret(os.Getenv("SecretName"))
+	if err != nil {
+		res = &events.APIGatewayProxyResponse{
+			StatusCode: 400,
+			Body:       "Error na leitura de Segredo" + err.Error(),
 			Headers: map[string]string{
 				"Contert-Type": "application/json",
 			},
