@@ -10,6 +10,7 @@ import (
 
 	"github.com/marcoswlrich/twittergo/awsgo"
 	"github.com/marcoswlrich/twittergo/bd"
+	"github.com/marcoswlrich/twittergo/handlers"
 	"github.com/marcoswlrich/twittergo/models"
 	"github.com/marcoswlrich/twittergo/secretmanager"
 )
@@ -74,6 +75,20 @@ func ExecuteLambda(
 		}
 		return res, nil
 
+	}
+
+	respAPI := handlers.Manipuladores(awsgo.Ctx, request)
+	if respAPI.CustomResp == nil {
+		res = &events.APIGatewayProxyResponse{
+			StatusCode: respAPI.Status,
+			Body:       respAPI.Message,
+			Headers: map[string]string{
+				"Contert-Type": "application/json",
+			},
+		}
+		return res, nil
+	} else {
+		return respAPI.CustomResp, nil
 	}
 }
 
