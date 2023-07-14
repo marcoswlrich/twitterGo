@@ -9,6 +9,7 @@ import (
 	lambda "github.com/aws/aws-lambda-go/lambda"
 
 	"github.com/marcoswlrich/twittergo/awsgo"
+	"github.com/marcoswlrich/twittergo/bd"
 	"github.com/marcoswlrich/twittergo/models"
 	"github.com/marcoswlrich/twittergo/secretmanager"
 )
@@ -59,6 +60,21 @@ func ExecuteLambda(
 	awsgo.Ctx = context.WithValue(awsgo.Ctx, models.Key("jwtSign"), SecretModel.JWTSign)
 	awsgo.Ctx = context.WithValue(awsgo.Ctx, models.Key("body"), request.Body)
 	awsgo.Ctx = context.WithValue(awsgo.Ctx, models.Key("bucketName"), os.Getenv("BucketName"))
+
+	// Conexao com banco de dados
+
+	err = bd.ConectarBD(awsgo.Ctx)
+	if err != nil {
+		res = &events.APIGatewayProxyResponse{
+			StatusCode: 500,
+			Body:       "Error ao conectar banco de dados" + err.Error(),
+			Headers: map[string]string{
+				"Contert-Type": "application/json",
+			},
+		}
+		return res, nil
+
+	}
 }
 
 func ValidateParameters() bool {
