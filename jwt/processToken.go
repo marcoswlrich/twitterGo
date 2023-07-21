@@ -14,7 +14,7 @@ var (
 	IDUser string
 )
 
-func ProcessToken(tk string, JWTSign string) (*models.Claim, bool, error) {
+func ProcessToken(tk string, JWTSign string) (*models.Claim, bool, string, error) {
 	myKey := []byte(JWTSign)
 	var claims models.Claim
 
