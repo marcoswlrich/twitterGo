@@ -8,6 +8,7 @@ import (
 
 	"github.com/marcoswlrich/twittergo/jwt"
 	"github.com/marcoswlrich/twittergo/models"
+	"github.com/marcoswlrich/twittergo/routers"
 )
 
 func Manipuladores(ctx context.Context, request events.APIGatewayProxyRequest) models.RespApi {
@@ -29,7 +30,7 @@ func Manipuladores(ctx context.Context, request events.APIGatewayProxyRequest) m
 	case "POST":
 		switch ctx.Value(models.Key("path")).(string) {
 		case "registro":
-			return routers.Registro(ctx)
+			return routers.Regitro(ctx)
 		}
 
 	case "GET":

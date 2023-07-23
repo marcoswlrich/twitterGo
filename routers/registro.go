@@ -43,7 +43,7 @@ func Regitro(ctx context.Context) models.RespApi {
 		return r
 	}
 
-	_, status := bd.AdicionarRegistro(t)
+	_, status, err := bd.AdicionarRegistro(t)
 	if err != nil {
 		r.Message = "Ocorreu um erro ao tentar realizar o registro de usuario" + err.Error()
 		return r
