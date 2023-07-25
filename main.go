@@ -20,7 +20,6 @@ func main() {
 }
 
 func ExecuteLambda(
-	ctx context.Context,
 	request events.APIGatewayProxyRequest,
 ) (*events.APIGatewayProxyResponse, error) {
 	var res *events.APIGatewayProxyResponse

@@ -19,7 +19,7 @@ func Manipuladores(ctx context.Context, request events.APIGatewayProxyRequest) m
 	var r models.RespApi
 	r.Status = 400
 
-	isOk, statuscode, msg, claim := validaAuthorization(ctx, request)
+	isOk, statuscode, msg, _ := validaAuthorization(ctx, request)
 	if !isOk {
 		r.Status = statuscode
 		r.Message = msg
@@ -30,7 +30,9 @@ func Manipuladores(ctx context.Context, request events.APIGatewayProxyRequest) m
 	case "POST":
 		switch ctx.Value(models.Key("path")).(string) {
 		case "registro":
-			return routers.Regitro(ctx)
+			return routers.Registro(ctx)
+		case "login":
+			return routers.Login(ctx)
 		}
 
 	case "GET":

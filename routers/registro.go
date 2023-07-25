@@ -9,7 +9,7 @@ import (
 	"github.com/marcoswlrich/twittergo/models"
 )
 
-func Regitro(ctx context.Context) models.RespApi {
+func Registro(ctx context.Context) models.RespApi {
 	var t models.User
 	var r models.RespApi
 	r.Status = 400
