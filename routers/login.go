@@ -13,7 +13,7 @@ import (
 	"github.com/marcoswlrich/twittergo/models"
 )
 
-func login(ctx context.Context) models.RespApi {
+func Login(ctx context.Context) models.RespApi {
 	var t models.User
 	var r models.RespApi
 	r.Status = 400
@@ -30,7 +30,7 @@ func login(ctx context.Context) models.RespApi {
 		return r
 	}
 
-	userData, existe := bd.TesteLogin(t.Email, t.Password)
+	userData, existe := bd.TestandoLogin(t.Email, t.Password)
 	if !existe {
 		r.Message = "Nome de usuario ou senha invalido"
 		return r
