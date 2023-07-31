@@ -39,6 +39,7 @@ func ViewTweets(request events.APIGatewayProxyRequest) models.RespApi {
 
 	respJson, err := json.Marshal(tweets)
 	if err != nil {
+		r.Status = 500
 		r.Message = "Erro ao formatar os dados do usuário como JSON"
 		return r
 	}
