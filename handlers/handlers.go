@@ -41,7 +41,10 @@ func Manipuladores(ctx context.Context, request events.APIGatewayProxyRequest) m
 		switch ctx.Value(models.Key("path")).(string) {
 		case "perfil":
 			return routers.ViewPerfil(request)
+		case "Tweets":
+			return routers.ViewTweets(request)
 		}
+
 	case "PUT":
 		switch ctx.Value(models.Key("path")).(string) {
 		case "editarPerfil":
@@ -81,6 +84,6 @@ func validaAuthorization(
 		}
 	}
 
-	fmt.Println("Token Ok")
+	fmt.Println("Token OK")
 	return true, 200, msg, *claim
 }
