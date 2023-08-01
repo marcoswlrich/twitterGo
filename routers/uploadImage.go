@@ -43,8 +43,10 @@ func UploadImage(
 	switch uploadType {
 	case "A":
 		filename = "avatars/" + IDuser + ".jpg"
+		user.Avatar = filename
 	case "B":
 		filename = "banners/" + IDuser + ".jpg"
+		user.Banner = filename
 	}
 
 	mediaType, params, err := mime.ParseMediaType(request.Headers["Content-Type"])

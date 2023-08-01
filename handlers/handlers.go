@@ -38,7 +38,7 @@ func Manipuladores(ctx context.Context, request events.APIGatewayProxyRequest) m
 		case "postAvatar":
 			return routers.UploadImage(ctx, "A", request, claim)
 		case "postBanner":
-			return routers.UploadImage(ctx, "A", request, claim)
+			return routers.UploadImage(ctx, "B", request, claim)
 		}
 
 	case "GET":
