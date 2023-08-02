@@ -47,6 +47,10 @@ func Manipuladores(ctx context.Context, request events.APIGatewayProxyRequest) m
 			return routers.ViewPerfil(request)
 		case "Tweets":
 			return routers.ViewTweets(request)
+		case "verAvatar":
+			return routers.GetImage(ctx, "A", request, claim)
+		case "verBanner":
+			return routers.GetImage(ctx, "B", request, claim)
 		}
 
 	case "PUT":
