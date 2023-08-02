@@ -35,6 +35,8 @@ func Manipuladores(ctx context.Context, request events.APIGatewayProxyRequest) m
 			return routers.Login(ctx)
 		case "tweet":
 			return routers.CreateTweet(ctx, claim)
+		case "addSeguidores":
+			return routers.addFollowers(ctx, request, claim)
 		case "postAvatar":
 			return routers.UploadImage(ctx, "A", request, claim)
 		case "postBanner":
