@@ -36,7 +36,7 @@ func Manipuladores(ctx context.Context, request events.APIGatewayProxyRequest) m
 		case "tweet":
 			return routers.CreateTweet(ctx, claim)
 		case "addSeguidores":
-			return routers.addFollowers(ctx, request, claim)
+			return routers.AddFollowers(ctx, request, claim)
 		case "postAvatar":
 			return routers.UploadImage(ctx, "A", request, claim)
 		case "postBanner":
@@ -53,6 +53,8 @@ func Manipuladores(ctx context.Context, request events.APIGatewayProxyRequest) m
 			return routers.GetImage(ctx, "A", request, claim)
 		case "verBanner":
 			return routers.GetImage(ctx, "B", request, claim)
+		case "buscaSeguidor":
+			return routers.GetFollowers(request, claim)
 		}
 
 	case "PUT":
@@ -64,6 +66,8 @@ func Manipuladores(ctx context.Context, request events.APIGatewayProxyRequest) m
 		switch ctx.Value(models.Key("path")).(string) {
 		case "excluirTweet":
 			return routers.DeleteTweet(request, claim)
+		case "excluirSeguidor":
+			return routers.DeleteFollowers(request, claim)
 		}
 	}
 
