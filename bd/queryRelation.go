@@ -14,8 +14,8 @@ func QueryRelation(t models.Relationship) bool {
 	col := db.Collection("relation")
 
 	condition := bson.M{
-		"UserID":         t.UserID,
-		"UserRelationID": t.UserRelationID,
+		"userid":         t.UserID,
+		"userrelationid": t.UserRelationID,
 	}
 
 	var resultado models.Relationship
