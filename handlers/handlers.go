@@ -55,6 +55,10 @@ func Manipuladores(ctx context.Context, request events.APIGatewayProxyRequest) m
 			return routers.GetImage(ctx, "B", request, claim)
 		case "buscaSeguidor":
 			return routers.GetFollowers(request, claim)
+		case "listaUsuarios":
+			return routers.ListUsers(request, claim)
+		case "lerTweetsSeguidores":
+			return routers.ReadTweetsFollowers(request, claim)
 		}
 
 	case "PUT":
